@@ -1,0 +1,191 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+
+	
+
+
+	<h1>Astro Built Patient Information Form</h1>
+	<form id="patientForm">
+		<label for="firstName">First Name:</label>
+		<input type="text" id="firstName" name="firstName" required><br>
+
+		<label for="lastName">Last Name:</label>
+		<input type="text" id="lastName" name="lastName" required><br>
+
+		<label for="birthday">Birthday:</label>
+		<input type="text" id="birthday" name="birthday" placeholder="MM/DD/YYYY" required><br>
+
+		<div id="parentInfo" style="display:none;">
+			<label for="parentName">Parent Name:</label>
+			<input type="text" id="parentName" name="parentName"><br>
+
+			<label for="parentPhone">Parent Phone:</label>
+			<input type="tel" id="parentPhone" name="parentPhone" placeholder="(XXX) XXX-XXXX" pattern="^\(\d{3}\) \d{3}-\d{4}$"><br>
+		</div>
+
+		<label for="phone">Phone:</label>
+		<input type="tel" id="phone" name="phone" placeholder="(XXX) XXX-XXXX" pattern="^\(\d{3}\) \d{3}-\d{4}$" required><br>
+
+		<label for="address">Address:</label>
+		<input type="text" id="address" name="address" required><br>
+
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required><br>
+
+		<input type="submit" value="Submit">
+	</form>
+  <style>
+		label {
+			display: inline-block;
+			width: 100px;
+			text-align: right;
+			margin-right: 10px;
+		}
+		input[type="text"], input[type="tel"], input[type="email"] {
+			width: 300px;
+			padding: 5px;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			font-size: 16px;
+			font-family: sans-serif;
+		}
+		input[type="submit"] {
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+		.error {
+			color: red;
+			font-size: 14px;
+			margin-top: -10px;
+			margin-bottom: 10px;
+		}
+	</style>
+
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<script>
+		var form = document.getElementById("patientForm");
+		form.addEventListener("submit", function (event) {
+			event.preventDefault();
+
+			var firstName = document.getElementById("firstName").value.trim();
+			var lastName = document.getElementById("lastName").value.trim();
+			var birthday = document.getElementById("birthday").value.trim();
+			var parentName = document.getElementById("parentName").value.trim();
+			var parentPhone = document.getElementById("parentPhone").value.trim();
+			var phone = document.getElementById("phone").value.trim();
+			var address = document.getElementById("address").value.trim();
+      var email = document.getElementById("email").value.trim();
+
+// Validate inputs
+var errorMessages = [];
+if (firstName === "") {
+  errorMessages.push("Please enter your first name.");
+}
+if (lastName === "") {
+  errorMessages.push("Please enter your last name.");
+}
+if (birthday === "") {
+  errorMessages.push("Please enter your birthday in the format MM/DD/YYYY.");
+} else {
+  var birthdayRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+  if (!birthdayRegex.test(birthday)) {
+    errorMessages.push("Please enter a valid birthday in the format MM/DD/YYYY.");
+  }
+}
+if (parentName !== "" && parentPhone === "") {
+  errorMessages.push("Please enter the parent's phone number.");
+}
+if (parentName === "" && parentPhone !== "") {
+  errorMessages.push("Please enter the parent's name.");
+}
+if (phone === "") {
+  errorMessages.push("Please enter your phone number.");
+} else {
+  var phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+  if (!phoneRegex.test(phone)) {
+    errorMessages.push("Please enter a valid phone number in the format (XXX) XXX-XXXX.");
+  }
+}
+if (address === "") {
+  errorMessages.push("Please enter your address.");
+}
+if (email === "") {
+  errorMessages.push("Please enter your email address.");
+} else {
+  var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  if (!emailRegex.test(email)) {
+    errorMessages.push("Please enter a valid email address.");
+  }
+}
+
+// Display error messages if any
+if (errorMessages.length > 0) {
+  var errorDiv = document.createElement("div");
+  errorDiv.className = "error";
+  errorDiv.innerHTML = errorMessages.join("<br>");
+  form.insertBefore(errorDiv, form.firstChild);
+  return;
+}
+
+// Format phone numbers
+var formattedPhone = phone.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+var formattedParentPhone = parentPhone.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+
+// Compose email body
+var body = "First Name: " + firstName + "\n" +
+  "Last Name: " + lastName + "\n" +
+  "Birthday: " + birthday + "\n" +
+  "Phone: " + formattedPhone + "\n" +
+  "Address: " + address + "\n" +
+  "Email: " + email + "\n\n";
+if (parentName !== "" && parentPhone !== "") {
+  body += "Parent Name: " + parentName + "\n" +
+    "Parent Phone: " + formattedParentPhone + "\n";
+}
+
+// Send email
+Email.send({
+  Host: "smtp.fastmail.com",
+  Username: "vickie@fastmail.com",
+  Password: "jug4dx3mzr6zsm2k",
+  To: "vickie.starkey@protonmail.com",
+  From: "donnie@titaniumhut.com",
+  Subject: "New Patient request",
+  Body: body,
+}).then(function () {
+  alert("Thanks for your vote of confidence, we will be with you shortly.");
+  form.reset();
+  if
+  (document.getElementById("parentInfo").style.display === "block") {
+document.getElementById("parentInfo").style.display = "none";
+}
+});
+});
+	// Show parent info fields if patient is under 18
+	var birthdayInput = document.getElementById("birthday");
+	birthdayInput.addEventListener("blur", function () {
+		var birthday = birthdayInput.value;
+		var parts = birthday.split("/");
+		if (parts.length === 3) {
+			var year = parseInt(parts[2], 10);
+			var today = new Date();
+			var age = today.getFullYear() - year;
+			if (age < 18) {
+				document.getElementById("parentInfo").style.display = "block";
+			} else {
+				document.getElementById("parentInfo").style.display = "none";
+			}
+		}
+	});
+</script>

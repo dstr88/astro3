@@ -1,0 +1,72 @@
+
+  <div class="modal" x-data="{ open: false }" x-show="open">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="text-lg font-semibold">Modal Title</h3>
+          <button class="modal-close" x-on:click="open = false">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Modal Content Here</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<style>
+  /* modal styling */
+  .bg-gray-800 {
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+
+  .bg-opacity-60 {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .text-salmon {
+    color: #ff7f50;
+  }
+
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+
+  .p-6 {
+    padding: 1.5rem;
+  }
+
+  .text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .text-gray-700 {
+    color: #4a5568;
+  }
+
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hover\:bg-red-600:hover {
+    background-color: #dc2626;
+  }
+
+  .transition-colors {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 300ms;
+  }
+</style>

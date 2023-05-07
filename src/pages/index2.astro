@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+
+---
+
+<Layout title="Welcome to Astro.">
+<div class="index1">
+	<div class="item item1">
+<!-- 	<Parallax />  -->
+	</div>
+	
+	<div class="item item2">2</div>
+	<div class="item item3">
+		<div class="item item1">
+			<h1 style="color: white;">Check out this 13 minute video where a colleague tells her experience with ART</h1>
+			<div class="card" style="width: 35rem;">
+			<i class="fa fa-drivers-license drk" aria-hidden="true"></i>
+			<iframe class="card-img-top wow shake" style="height: 35rem;"  src="https://www.youtube.com/embed/oXhOts-IjxI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+			<div class="card-body">
+			<p class="card-text drk">ART uses visualization techniques to reprogram the brain.  This happens naturally while we sleep. A trained therapist can use the technique to reinforce good experiences while helping the client to distance themselves from the emotional responses caused by past experiences.</p>
+			</div>
+		 </div>
+	</div>
+	<div class="item item4">4</div>
+	<div class="item item5">5</div>
+	<div class="item item6">6</div>
+	<div class="item item7">7</div>
+
+</div>
+</Layout>
+
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 60ch;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	.instructions {
+		line-height: 1.6;
+		margin: 1rem 0;
+		border: 1px solid rgba(var(--accent), 25%);
+		background-color: white;
+		padding: 1rem;
+		border-radius: 0.4rem;
+	}
+	.instructions code {
+		font-size: 0.875em;
+		font-weight: bold;
+		background: rgba(var(--accent), 12%);
+		color: rgb(var(--accent));
+		border-radius: 4px;
+		padding: 0.3em 0.45em;
+	}
+	.instructions strong {
+		color: rgb(var(--accent));
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+</style>

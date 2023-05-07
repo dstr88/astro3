@@ -1,0 +1,35 @@
+---
+import TitaniumHutLogo from "../images/logo/titaniumHutLogofnl2.svg"
+import LionLambLogo from "../images/logo/vickielogo.svg";
+
+---
+<div class="container">
+    <div class="item"><div class="left">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3237.978437711504!2d-83.98017159966406!3d35.751334733635204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885e9e324c432543%3A0x4d544741ea76b1db!2s523%20W%20Lamar%20Alexander%20Pkwy%2C%20Maryville%2C%20TN%2037801!5e0!3m2!1sen!2sus!4v1677638288933!5m2!1sen!2sus" width="100" height="100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">Our address: 523 W. Lamar Alexander Parkeway Ste: 8 Maryville, TN</iframe>
+      </div></div>
+    <div class="item"><div class="middle">
+        <a href="../pages/privacy" class="mr-4 hover:underline md:mr-6 ">privacy</a>
+    </div></div>
+    <div class="item"><div class="right">
+        <a href="titaniumhut.com" class="hover:bold"><img src={LionLambLogo} alt="Lions lamb logo" width="225rem" height="225rem"></a>
+    </div></div>
+    <div class="item"><div class="right">
+        <a href="titaniumhut.com" class="hover:bold"><img src={TitaniumHutLogo} alt="Titanium Hut hosting"></a>
+    </div></div>
+</div>
+
+<style>
+    .container{
+        display: grid;
+        border: 10px solid yellow;
+        grid-template-columns: 1fr 1fr 2fr 1fr;
+        grid-area: footer;
+        position: sticky;
+        z-index: 5;
+    }
+    .item{
+        align-items: center;
+        color: salmon;
+    }
+
+</style>
